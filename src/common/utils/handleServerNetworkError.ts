@@ -6,23 +6,24 @@ import { z } from "zod/v4"
 export const handleServerNetworkError = (dispatch: Dispatch, error: unknown) => {
   let errorMessage
 
-  switch(true) {
-   case axios.isAxiosError(error):
-     errorMessage = error?.response?.data?.message || error.message
-     break
+  switch (true) {
+    case axios.isAxiosError(error):
+      errorMessage = error?.response?.data?.message || error.message
+      break
 
     case error instanceof z.ZodError:
       console.table(error.issues)
-      errorMessage ="ZodError. See console for more details."
+      errorMessage = "ZodError. See console for more details."
       break
 
     case error instanceof Error:
-      errorMessage= `Native Errror: ${error.message}`
+      errorMessage = `Native Errror: ${error.message}`
       break
 
-      default:
-        errorMessage= JSON.stringify(error)
+    default:
+      errorMessage = JSON.stringify(error)
 
-  dispatch(setAppErrorAC({ error: errorMessage }))
-  dispatch(setAppStatusAC({ status: "failed" }))
+      dispatch(setAppErrorAC({ error: errorMessage }))
+      dispatch(setAppStatusAC({ status: "failed" }))
+  }
 }
