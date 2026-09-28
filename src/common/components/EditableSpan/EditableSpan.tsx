@@ -37,7 +37,7 @@ export const EditableSpan = ({ value, onChange, disabled }: Props) => {
           autoFocus
         />
       ) : (
-        <span onDoubleClick={turnOnEditMode}>{value}</span>
+        <span onClick={turnOnEditMode}>{value}</span>
       )}
     </>
   )

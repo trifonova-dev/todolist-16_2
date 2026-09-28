@@ -1,4 +1,3 @@
-
 import { z } from "zod/v4"
 import { ResultCode } from "@/common/enums"
 
@@ -24,5 +23,7 @@ export const baseResponseSchema = <T extends z.ZodType>(schema: T) =>
     fieldsErrors: fieldErrorSchema.array(),
   })
 
+export const defaultResponseSchema = baseResponseSchema(z.object({}))
+export type DefaultResponse = z.infer<typeof defaultResponseSchema>
 
 export type RequestStatus = "idle" | "loading" | "succeeded" | "failed"

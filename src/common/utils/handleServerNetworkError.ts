@@ -23,7 +23,7 @@ export const handleServerNetworkError = (dispatch: Dispatch, error: unknown) => 
     default:
       errorMessage = JSON.stringify(error)
 
-      dispatch(setAppErrorAC({ error: errorMessage }))
-      dispatch(setAppStatusAC({ status: "failed" }))
   }
+  dispatch(setAppErrorAC({ error: errorMessage }))
+  dispatch(setAppStatusAC({ status: "failed" }))
 }
